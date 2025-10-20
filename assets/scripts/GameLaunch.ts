@@ -1,12 +1,12 @@
-import './Jewelry_common/Expand'
+import './Jb_common/Expand'
 import { _decorator, Component, Node } from 'cc';
-import { ViewManager } from './Jewelry_game/manager/ViewManger_Jewelry';
-import { GameStorage } from './Jewelry_game/GameStorage_Jewelry';
+import { ViewManager } from './Jb_game/manager/ViewManger_Jb';
+import { GameStorage } from './Jb_game/GameStorage_Jb';
 import { AudioSource } from 'cc';
-import { AudioManager } from './Jewelry_game/manager/AudioManager_Jewelry';
-import { i18n } from './Jewelry_common/i18n/I18nManager';
-import { AudioStorage } from './Jewelry_common/localStorage/AudioStorage';
-import { LangStorage } from './Jewelry_common/localStorage/LangStorage';
+import { AudioManager } from './Jb_game/manager/AudioManager_Jb';
+import { i18n } from './Jb_common/i18n/I18nManager';
+import { AudioStorage } from './Jb_common/localStorage/AudioStorage';
+import { LangStorage } from './Jb_common/localStorage/LangStorage';
 const { ccclass, property } = _decorator;
 
 @ccclass('GameLaunch')
