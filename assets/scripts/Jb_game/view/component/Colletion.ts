@@ -83,7 +83,7 @@ export class Colletion extends Component {
     async clearAni() {
         this.effect.node.active = true;
         ActionEffect.fadeOut(this.collection, 0.5);
-        await ActionEffect.playAni(this.effect, 6, 0.1);
+        await ActionEffect.playAni(this.effect, 6, 0.06);
         this.node.destroy();
     }
 }

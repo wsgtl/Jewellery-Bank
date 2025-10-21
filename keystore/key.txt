@@ -1,17 +1,18 @@
 密钥库别名:  key0
-密码:   jjjcccppp
-别名密码:    jjjcccppp
-游戏名：Jewelry Collector
-包名：com.luckbash.lksma
-max SDK key：cDH3qp_qqeDkvuZITbPw6orrhh3nuTg8aTqoDbCCdgU5b6IJKm93yFGo8ka5sPOCereeKQfl552bBAlCqe8yZB
-激励广告位ID： 87d2c8137a78228d
-插屏广告位ID： 3f34061d94fbce2f
+密码:   jjbbkk
+别名密码:    jjbbkk
+游戏名：Jewellery Bank
+包名：com.jewellery.bankii
+max SDK key：xZiRIeeqQfFw6N0iSdefa651dPMl0OL2TUE3SmDWSmexlpHDUsW4LJLiVkeVXFCeL3KEDwOM43u9pME7utD3uf
+激励广告位ID： cba10e80e3add2d6
+插屏广告位ID： c0642d335430f534
 横幅广告位ID： 
-admob ID: ca-app-pub-9742962109921558~6678355304
-af key: kYVJnzYQqaxjNLmErt4buY
+admob ID:  ca-app-pub-2325233743737469~8893702174
+af key:  
+adjust:  jozx4koxkc8w
 
 
-隐私政策网址：https://sites.google.com/view/dkkfdkciuviuciviousii928907887/home
+隐私政策网址：https://sites.google.com/view/oi99093jyhihjmmchshhqahhd11/home
 
 //生成output.zip秘钥
 java -jar E:\szhy\keystore/pepk.jar --keystore=key.jks --alias=key0 --output=output.zip --include-cert --rsa-aes-encryption --encryption-key-path=encryption_public_key.pem

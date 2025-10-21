@@ -37,7 +37,7 @@ export class GameOver extends DialogComponent {
         this.btnRevive.on(Button.EventType.CLICK, () => {
             AudioManager.playEffect("btn");
             this.setCanClick(false);
-            adHelper.showRewardVideo(() => {
+            adHelper.showRewardVideo("游戏结束弹窗",() => {
                 this.node.destroy();
                 args.reviveCb?.();
             },()=>{
@@ -47,7 +47,7 @@ export class GameOver extends DialogComponent {
         })
        
         AudioManager.playEffect("failed");
-        adHelper.showInterstitial();
+        adHelper.showInterstitial("游戏结束弹窗");
     }
   
 

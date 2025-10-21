@@ -61,7 +61,7 @@ export class RewardCoinDialog extends DialogComponent {
         }
     }
     onBtnReceive() {
-        adHelper.showRewardVideo(() => {
+        adHelper.showRewardVideo("金币奖励弹窗",() => {
             this.closeAni();
             this.addReward(this.rewardNum * this.reciveNum);
         }, ViewManager.adNotReady)

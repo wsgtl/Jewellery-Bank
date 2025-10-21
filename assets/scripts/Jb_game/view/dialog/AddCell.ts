@@ -4,6 +4,7 @@ import { Button } from 'cc';
 import { adHelper } from '../../../Jb_common/native/AdHelper';
 import { ViewManager } from '../../manager/ViewManger_Jb';
 import { GameStorage } from '../../GameStorage_Jb';
+import { EventCode, EventTracking } from '../../../Jb_common/native/EventTracking';
 const { ccclass, property } = _decorator;
 
 @ccclass('AddCell')
@@ -22,7 +23,8 @@ export class AddCell extends DialogComponent {
 
     onBtnFree() {
         this.btnFree.getComponent(Button).interactable = false;
-        adHelper.showRewardVideo(() => {
+        adHelper.showRewardVideo("暂存区增加",() => {
+            EventTracking.sendEventCode(EventCode.game_buy_position);
             GameStorage.setCellUnlock(GameStorage.getCurLevel());
             this.closeAni();
             this.cb?.();

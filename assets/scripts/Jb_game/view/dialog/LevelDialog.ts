@@ -5,6 +5,7 @@ import { tween } from 'cc';
 import { ActionEffect } from '../../../Jb_common/effects/ActionEffect';
 import { delay } from '../../../Jb_common/utils/TimeUtil';
 import { AudioManager } from '../../manager/AudioManager_Jb';
+import { EventCode, EventTracking } from '../../../Jb_common/native/EventTracking';
 const { ccclass, property } = _decorator;
 
 @ccclass('LevelDialog')
@@ -27,6 +28,7 @@ export class LevelDialog extends DialogComponent {
         parent.addChild(this.node);
         this.isWin = args.isWin;
         if(args.isWin){
+            EventTracking.sendEventCode(EventCode.game_success);
             this.showTitle(true);
             this.showTrumpet();
             delay(2.5).then(async ()=>{

@@ -237,7 +237,7 @@ export class GameView extends ViewComponent {
 
     async checkWin(type: ColletType) {
         if (type > 0 && type <= ColletType.cash) {
-            let reward: RewardType = type - 0;
+            let reward: RewardType = type - 0;  
             ViewManager.showReward(reward, () => {
                 this.rewardCb?.();
             });

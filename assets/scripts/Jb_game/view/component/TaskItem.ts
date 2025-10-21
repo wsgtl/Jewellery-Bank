@@ -7,6 +7,7 @@ import { CoinManger } from '../../manager/CoinManger_Jb';
 import { GameStorage } from '../../GameStorage_Jb';
 import { ViewManager } from '../../manager/ViewManger_Jb';
 import { ReddotManager } from '../../manager/ReddotManager';
+import { EventCode, EventTracking } from '../../../Jb_common/native/EventTracking';
 const { ccclass, property } = _decorator;
 
 @ccclass('TaskItem')
@@ -53,6 +54,7 @@ export class TaskItem extends Component {
         ViewManager.showRewardAni(RewardType.coin, this.coinNum, () => { });
         GameStorage.receiveTask(this.levelNum);
         ReddotManager.instance.showTaskDot();
+        EventTracking.sendEventCode(EventCode.task_claim_reward);
     }
 }
 

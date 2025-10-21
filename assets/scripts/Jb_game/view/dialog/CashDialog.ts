@@ -12,6 +12,7 @@ import { AudioManager } from '../../manager/AudioManager_Jb';
 import { v3 } from 'cc';
 import { i18n } from '../../../Jb_common/i18n/I18nManager';
 import { LangStorage } from '../../../Jb_common/localStorage/LangStorage';
+import { EventCode, EventTracking } from '../../../Jb_common/native/EventTracking';
 const { ccclass, property } = _decorator;
 
 @ccclass('Cash')
@@ -31,6 +32,7 @@ export class Cash extends DialogComponent {
 
     cb: Function;
     show(parent: Node, args?: any): void {
+        EventTracking.sendEventCode(EventCode.game_withdraw);
         parent.addChild(this.node);
         this.showNum();
         if (args.addNum > 0) {
@@ -72,6 +74,7 @@ export class Cash extends DialogComponent {
         this.showNum();
     }
     protected onDestroy(): void {
+        EventTracking.sendEventCode(EventCode.game_withdraw_close);
         this.cb?.();
     }
 }

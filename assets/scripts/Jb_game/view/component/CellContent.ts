@@ -5,11 +5,12 @@ import { v3 } from 'cc';
 import { GameManger } from '../../manager/GameManager_Jb';
 import { delay } from '../../../Jb_common/utils/TimeUtil';
 import { Cabinet } from './Cabinet';
-import { CabinetData } from '../../GameUtil_Jb';
+import { CabinetData, ColletType, RewardType } from '../../GameUtil_Jb';
 import { AudioManager } from '../../manager/AudioManager_Jb';
 import { GameStorage } from '../../GameStorage_Jb';
 import { ViewManager } from '../../manager/ViewManger_Jb';
 import { GuideManger } from '../../manager/GuideManager';
+import { EventCode, EventTracking } from '../../../Jb_common/native/EventTracking';
 const { ccclass, property } = _decorator;
 
 @ccclass('CellContent')
@@ -67,8 +68,11 @@ export class CellContent extends Component {
             }
             GameManger.instance.showProgress();
             this.collects.splice(start, (index - start + 1));
-            await delay(0.6, this.node);
+            // await delay(0.2, this.node);
             await this.moveAfterCollet(start);
+            if(type==ColletType.money){
+                EventTracking.sendEventCode(EventCode.game_click_merge);
+            }
             GameManger.instance.checkWin(type);
         } else {
             if (this.collects.length >= num) {

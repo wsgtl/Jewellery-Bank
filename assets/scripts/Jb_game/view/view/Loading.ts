@@ -10,6 +10,7 @@ import { GuideManger } from '../../manager/GuideManager';
 import { sys } from 'cc';
 import { game } from 'cc';
 import { Game } from 'cc';
+import { EventCode, EventTracking } from '../../../Jb_common/native/EventTracking';
 const { ccclass, property } = _decorator;
 
 @ccclass('Loading')
@@ -28,7 +29,8 @@ export class Loading extends ViewComponent {
         parent.addChild(this.node);
         this.showProgress();
         adHelper.init();
-        game.on(Game.EVENT_SHOW, () => { adHelper.showInterstitial(); console.log("回前台显示插屏广告") })
+        game.on(Game.EVENT_SHOW, () => {if(Math.random()<0.7)return; adHelper.showInterstitial("回前台显示插屏广告"); console.log("回前台显示插屏广告") })
+        EventTracking.sendEventCode(EventCode.page_loading);
     }
     async showProgress() {
         const all = sys.platform === sys.Platform.ANDROID ? 200 : 30;

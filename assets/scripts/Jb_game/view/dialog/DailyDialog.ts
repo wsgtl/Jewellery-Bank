@@ -9,6 +9,7 @@ import { CoinManger } from '../../manager/CoinManger_Jb';
 import { MoneyManger } from '../../manager/MoneyManger';
 import { ReddotManager } from '../../manager/ReddotManager';
 import { i18n } from '../../../Jb_common/i18n/I18nManager';
+import { EventCode, EventTracking } from '../../../Jb_common/native/EventTracking';
 const { ccclass, property } = _decorator;
 
 @ccclass('DailyDialog')
@@ -17,6 +18,7 @@ export class DailyDialog extends DialogComponent {
     days: Node[] = [];
 
     onLoad(): void {
+        EventTracking.sendEventCode(EventCode.home_checkin);
         this.init();
         for (let i = 0; i < 7; i++) {
             const dayNode = this.days[i];
@@ -33,13 +35,15 @@ export class DailyDialog extends DialogComponent {
             ViewManager.showTips(i18n.string("str_aritoday"));
         } else {
             if (daily.weekDay == day) {
+                EventTracking.sendEventCode(EventCode.check_checkin);
                 const num = GameUtil.SigninCoins[day - 1];
-               
+                
                 // CoinManger.instance.addCoin(num, false);
                 // ViewManager.showRewardAni(RewardType.coin, num, () => { })
                
                
                 ViewManager.showRewardCoin(num,()=>{ 
+                    EventTracking.sendEventCode(EventCode.check_reward);
                     GameStorage.signin(GameUtil.getCurDay());
                     this.showReceive(node, true);
                     ReddotManager.instance.showSigninDot();
@@ -51,7 +55,7 @@ export class DailyDialog extends DialogComponent {
 
     }
     onDestroy(): void {
-        
+        EventTracking.sendEventCode(EventCode.check_close);
     }
     private init() {
         const daily = GameStorage.getDaily();

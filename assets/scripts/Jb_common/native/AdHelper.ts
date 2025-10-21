@@ -56,15 +56,19 @@ export class AdHelper {
         }
     }
     /**显示激励视频广告 */
-    public showRewardVideo(callback: CallableFunction, fail?: CallableFunction) {
+    public showRewardVideo(placement:string,callback: CallableFunction, fail?: CallableFunction) {
         console.log("显示激励广告1")
         if (sys.platform === sys.Platform.ANDROID) {
             console.log("显示激励广告2")
-            native.jsbBridgeWrapper.dispatchEventToNative("showRewardVideo");
+            native.jsbBridgeWrapper.dispatchEventToNative("showRewardVideo","激励广告:"+placement);
             this._getRewardVideo = callback;
             this._getRewardVideoFail = fail ? fail : callback;
+
+            // debug.log("激励视频广告失败:" );
+            // callback?.();
         } else {//网页端直接回调
             callback?.();
+            // fail(1);
         }
 
     }
@@ -76,11 +80,11 @@ export class AdHelper {
         }
     }
     /**显示插屏广告*/
-    public showInterstitial() {
+    public showInterstitial(placement:string) {
         console.log("显示插屏广告1")
         if (sys.platform === sys.Platform.ANDROID) {
             console.log("显示插屏广告2")
-            native.jsbBridgeWrapper.dispatchEventToNative("showInterstitial");
+            native.jsbBridgeWrapper.dispatchEventToNative("showInterstitial","插屏广告:"+placement);
         }
     }
     private interTime = 0;
@@ -89,8 +93,9 @@ export class AdHelper {
         this.interTime++;
         if (this.interTime >= t) {
             this.interTime = 0;
-            console.log(`限定${t}次后显示插屏广告`);
-            this.showInterstitial();
+            const tip = `点击退出${t}次后展示插屏`;
+            console.log(tip);
+            this.showInterstitial(tip);
         }
     }
     /**加载横幅广告 */

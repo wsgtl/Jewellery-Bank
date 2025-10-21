@@ -12,6 +12,7 @@ import { Label } from 'cc';
 import { GameUtil } from '../../GameUtil_Jb';
 import { i18n } from '../../../Jb_common/i18n/I18nManager';
 import { LangStorage } from '../../../Jb_common/localStorage/LangStorage';
+import { EventCode, EventTracking } from '../../../Jb_common/native/EventTracking';
 const { ccclass, property } = _decorator;
 
 @ccclass('PurseDialog')
@@ -63,6 +64,7 @@ export class PurseDialog extends DialogComponent {
     }
 
     protected onDestroy(): void {
+        EventTracking.sendEventCode(EventCode.game_click_cash_close);
         MoneyManger.instance.setDialog(null);//注销记录的弹窗
     }
 }

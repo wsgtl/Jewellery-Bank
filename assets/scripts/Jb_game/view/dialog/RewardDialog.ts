@@ -20,6 +20,7 @@ import { UIUtils } from '../../../Jb_common/utils/UIUtils';
 import { GuideManger } from '../../manager/GuideManager';
 import { Money } from '../component/Money';
 import { LangStorage } from '../../../Jb_common/localStorage/LangStorage';
+import { EventCode, EventTracking } from '../../../Jb_common/native/EventTracking';
 const { ccclass, property } = _decorator;
 
 @ccclass('RewardDialog')
@@ -44,6 +45,7 @@ export class RewardDialog extends DialogComponent {
         parent.addChild(this.node);
         this.init(args.type);
         this.cb = args.cb;
+        EventTracking.sendEventCode(EventCode.game_reward);
     }
     init(type: RewardType) {
         AudioManager.playEffect("reward", 2);
@@ -94,7 +96,8 @@ export class RewardDialog extends DialogComponent {
         }
     }
     onBtnReceive() {
-        adHelper.showRewardVideo(() => {
+        EventTracking.sendEventCode(EventCode.game_reward_video);
+        adHelper.showRewardVideo("游戏内收集奖励弹窗",() => {
             this.closeAni();
             if (!this.addCash(this.rewardNum))
                 this.addReward(this.rewardNum * this.reciveNum);

@@ -12,6 +12,7 @@ import { v3 } from 'cc';
 import { ButtonLock, GlobalButtonLock } from '../../../Jb_common/Decorator';
 import { AudioManager } from '../../manager/AudioManager_Jb';
 import { i18n } from '../../../Jb_common/i18n/I18nManager';
+import { EventCode, EventTracking } from '../../../Jb_common/native/EventTracking';
 const { ccclass, property } = _decorator;
 
 @ccclass('PropDialog')
@@ -40,7 +41,7 @@ export class PropDialog extends DialogComponent {
     }
     @GlobalButtonLock(1)
     private onReceive() {
-        adHelper.showRewardVideo(() => {
+        adHelper.showRewardVideo("加道具弹窗",() => {
             this.addProp();
         },ViewManager.adNotReady)
     }
@@ -61,7 +62,7 @@ export class PropDialog extends DialogComponent {
         this.strs.forEach((v, i) => { v.active = i == type - 1 });
     }
     addProp() {
-       
+        EventTracking.sendEventCode(this.type==1? EventCode.game_buy_return:EventCode.game_buy_rearrange);
         GameStorage.addPropNum(this.type, 1);
         this.cb?.();
 

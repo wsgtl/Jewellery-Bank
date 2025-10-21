@@ -11,6 +11,7 @@ import { instantiate } from 'cc';
 import { Widget } from 'cc';
 import { ActionEffect } from '../../../Jb_common/effects/ActionEffect';
 import { DialogBox } from './DialogBox';
+import { EventCode, EventTracking } from '../../../Jb_common/native/EventTracking';
 const { ccclass, property } = _decorator;
 
 @ccclass('GuideHome')
@@ -27,6 +28,7 @@ export class GuideHome extends ViewComponent {
         this.btnPlay.on(Button.EventType.CLICK, () => {
             ViewManager.showGameView();
             GuideManger.passHomeStep();
+            EventTracking.sendEventCode(EventCode.page_click_play);
         }, this);
         this.box.init(0);
         this.setp1();
@@ -40,6 +42,7 @@ export class GuideHome extends ViewComponent {
         this.guideNode.once(Node.EventType.TOUCH_START,this.setp2,this);
     }
     private async setp2() {
+        EventTracking.sendEventCode(EventCode.page_welcome_click);
         this.guideNode.active = false;
         this.btnPlay.active = true;
         this.btnPlay.getComponent(Widget).updateAlignment();

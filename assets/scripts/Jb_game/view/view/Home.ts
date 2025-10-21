@@ -8,6 +8,7 @@ import { GameUtil } from '../../GameUtil_Jb';
 import { GuideManger } from '../../manager/GuideManager';
 import { NativeFun } from '../../../Jb_common/native/NativeFun';
 import { ButtonLock } from '../../../Jb_common/Decorator';
+import { EventCode, EventTracking } from '../../../Jb_common/native/EventTracking';
 const { ccclass, property } = _decorator;
 
 @ccclass('Home')
@@ -56,15 +57,19 @@ export class Home extends ViewComponent {
     }
     @ButtonLock(1)
     onStart(){
+        EventTracking.sendEventCode(EventCode.home_click_play);
         ViewManager.showGameView()
     }
     onSignin() {
+        EventTracking.sendEventCode(EventCode.home_click_check);
         ViewManager.showDaily(this.upDialogNode);
     }
     onCash() {
+        EventTracking.sendEventCode(EventCode.home_click_cash);
         ViewManager.showCash(this.upDialogNode);
     }
     onH5() {
+        EventTracking.sendEventCode(EventCode.home_click_game);
         NativeFun.showH5Game();
     }
     

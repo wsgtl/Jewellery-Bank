@@ -11,6 +11,7 @@ import { Tween } from 'cc';
 import { UIUtils } from '../../../Jb_common/utils/UIUtils';
 import { LangStorage } from '../../../Jb_common/localStorage/LangStorage';
 import { v3 } from 'cc';
+import { EventCode, EventTracking } from '../../../Jb_common/native/EventTracking';
 const { ccclass, property } = _decorator;
 
 @ccclass('Money')
@@ -45,6 +46,7 @@ export class Money extends Component {
     }
     @ButtonLock(1)
     onGet() {
+        EventTracking.sendEventCode(EventCode.game_click_cash);
         MoneyManger.instance.showDialog();
     }
 

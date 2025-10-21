@@ -3,6 +3,7 @@ import { ActionEffect } from '../../../Jb_common/effects/ActionEffect';
 import { delay } from '../../../Jb_common/utils/TimeUtil';
 import { AudioManager } from '../../manager/AudioManager_Jb';
 import { ViewManager } from '../../manager/ViewManger_Jb';
+import { EventCode, EventTracking } from '../../../Jb_common/native/EventTracking';
 const { ccclass, property } = _decorator;
 
 @ccclass('Bottom')
@@ -20,8 +21,8 @@ export class Bottom extends Component {
     private isAni: boolean = false;
     onLoad() {
         this.btnHome.on(Node.EventType.TOUCH_START, () => { this.onBtn(0); })
-        this.btnShop.on(Node.EventType.TOUCH_START, () => { this.onBtn(-1); })
-        this.btnTask.on(Node.EventType.TOUCH_START, () => { this.onBtn(1); })
+        this.btnShop.on(Node.EventType.TOUCH_START, () => { EventTracking.sendEventCode(EventCode.home_click_shop);this.onBtn(-1); })
+        this.btnTask.on(Node.EventType.TOUCH_START, () => { EventTracking.sendEventCode(EventCode.home_click_task);this.onBtn(1); })
 
 
         this.showBtns(false);
